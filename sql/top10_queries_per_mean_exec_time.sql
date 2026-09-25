@@ -14,5 +14,7 @@ SELECT
     temp_blks_written
 FROM pg_stat_statements
 WHERE query NOT ILIKE '%pg_stat_statements%'
+  AND query ILIKE ANY(ARRAY['SELECT%','WITH%'])
+  AND calls > 100
 ORDER BY mean_exec_time DESC
 LIMIT 10;
