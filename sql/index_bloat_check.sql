@@ -95,7 +95,8 @@ FROM raw_bloat
 -- final query outputting the bloated indexes
 -- change the where and order by to change
 -- what shows up as bloated
-SELECT *
+SELECT *, sum(bloat_mb) over () as total_bloat_mb
 FROM format_bloat
-WHERE ( bloat_pct > 50 and bloat_mb > 10 )
+WHERE ( bloat_pct > 50 and bloat_mb > 100 )
+   OR ( bloat_pct > 25 and bloat_mb > 1000 )
 ORDER BY bloat_pct DESC;

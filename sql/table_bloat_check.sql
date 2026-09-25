@@ -128,13 +128,14 @@ SELECT databasename, schemaname, tablename,
     can_estimate,
     est_rows,
     pct_bloat, mb_bloat,
-    table_mb
+    table_mb,
+    sum(mb_bloat) over () as total_bloat_mb
 FROM bloat_data
 -- this where clause defines which tables actually appear
 -- in the bloat chart
 -- example below filters for tables which are either 50%
 -- bloated and more than 20mb in size, or more than 25%
 -- bloated and more than 4GB in size
-WHERE ( pct_bloat >= 50 AND mb_bloat >= 10 )
+WHERE ( pct_bloat >= 50 AND mb_bloat >= 100 )
     OR ( pct_bloat >= 25 AND mb_bloat >= 1000 )
 ORDER BY mb_bloat DESC;
