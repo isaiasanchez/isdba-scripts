@@ -97,6 +97,6 @@ FROM raw_bloat
 -- what shows up as bloated
 SELECT *, sum(bloat_mb) over () as total_bloat_mb
 FROM format_bloat
-WHERE ( bloat_pct > 50 and bloat_mb > 100 )
-   OR ( bloat_pct > 25 and bloat_mb > 1000 )
+WHERE ( bloat_pct > 35 and bloat_mb > 1000 )
+   OR ( bloat_pct > 15 and bloat_mb > 5000 )
 ORDER BY bloat_pct DESC;

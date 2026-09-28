@@ -136,6 +136,6 @@ FROM bloat_data
 -- example below filters for tables which are either 50%
 -- bloated and more than 20mb in size, or more than 25%
 -- bloated and more than 4GB in size
-WHERE ( pct_bloat >= 50 AND mb_bloat >= 100 )
-    OR ( pct_bloat >= 25 AND mb_bloat >= 1000 )
+WHERE ( pct_bloat >= 35 AND mb_bloat >= 1000 )
+    OR ( pct_bloat >= 15 AND mb_bloat >= 5000 )
 ORDER BY mb_bloat DESC;
